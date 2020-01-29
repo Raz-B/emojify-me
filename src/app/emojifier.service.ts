@@ -34,6 +34,9 @@ export class EmojifierService {
     return from(this.detectFaceProperties(imageDataUrl))
       .pipe(
         map(({ detection, expression }) => {
+          if (!detection){
+            return;
+          }
           return {
             emoji: this.emojiMap.get(expression),
             x: detection.box.x,
@@ -50,7 +53,7 @@ export class EmojifierService {
       .pipe(
         map(obj => {
           if (!obj){
-            return null
+            return {detection:null,expression:null}
           };
           const {expressions, detection} = obj;
           const { expression } = expressions.asSortedArray()[0];
