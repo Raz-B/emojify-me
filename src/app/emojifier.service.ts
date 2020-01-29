@@ -48,8 +48,11 @@ export class EmojifierService {
     const imageElement = this.createImageElement(imageDataUrl);
     return from(faceApi.detectSingleFace(imageElement).withFaceExpressions().run())
       .pipe(
-        map(({ detection, expressions }={detection:undefined,expressions:undefined} as any) => {
-          if (!detection){return null};
+        map(obj => {
+          if (!obj){
+            return null
+          };
+          const {expressions, detection} = obj;
           const { expression } = expressions.asSortedArray()[0];
           return { detection, expression };
         })
