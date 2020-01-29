@@ -1,5 +1,10 @@
 <ng-container *ngIf="loadedModels$ | async as loadedModels">
-    <ng-container <ng-container *ngIf="loadedModels; else elseTemplate">
+    <ng-container *ngIf="loadedModels; else elseTemplate">
+        <img class="emoji-image" *ngIf="emojiDescriptor"
+        [src]="emojiDescriptor.emoji"
+        [style.top.px]="emojiDescriptor.y"
+        [style.left.px]="emojiDescriptor.x"
+        [style.width.px]="emojiDescriptor.size">
         <webcam [trigger]="trigger$"
         (imageCapture)="onImageCapture($event)">
         </webcam>

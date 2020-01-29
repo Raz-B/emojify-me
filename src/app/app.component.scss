@@ -1,0 +1,13 @@
+:host {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.emoji-image {
+    z-index: 1;
+    position: absolute;
+    transform: scale(2.5);
+    transition: ease 200 ms;
+}
